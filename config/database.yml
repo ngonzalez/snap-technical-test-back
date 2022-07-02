@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  host: postgres
+  port: 5432
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: snap-technical-test_development
+
+test:
+  <<: *default
+  database: snap-technical-test_test
