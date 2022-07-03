@@ -41,18 +41,20 @@ class ShiftsApp extends React.Component {
                 });
             });
     }
+
+    handleErrors(message) {
+        this.setState({ errorMessage: message });
+    }
+
+    clearErrors() {
+        this.setState({ errorMessage: null });
+    }
+
     createShift(shift) {
         const shifts = [shift, ...this.state.shifts];
         this.setState({ shifts: shifts });
     }
-    handleErrors(errorMessage) {
-        this.setState({ errorMessage });
-    }
-    clearErrors() {
-        this.setState({
-            errorMessage: null,
-        });
-    }
+
     render() {
         return (
             <>
