@@ -18,6 +18,9 @@ gem "redis"
 # Redis backed store for Rack::Cache, an HTTP cache.
 gem "redis-rack-cache"
 
+# Redis for Ruby on Rails
+gem "redis-rails"
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 
@@ -56,6 +59,9 @@ gem "bootsnap"
 
 # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
 gem "annotate"
+
+# Dragonfly is a framework that enables on-the-fly processing for any content type.
+gem "dragonfly"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
