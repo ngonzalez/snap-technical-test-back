@@ -1,12 +1,74 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '7.0.2.4'
-gem 'pg', '1.3.5'
-gem 'puma', '5.6.4'
+ruby "3.0.3"
+
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "7.0.3"
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", "5.6.4"
+
+# PostgreSQL
+gem "pg"
+
+# Use Redis adapter to run Action Cable in production
+gem "redis"
+
+# Redis backed store for Rack::Cache, an HTTP cache.
+gem "redis-rack-cache"
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem "rack-cors"
+
+# Environment
+gem "dotenv-rails"
+
+# listen
+gem "listen"
+
+# Use SCSS for stylesheets
+gem "sass-rails"
+
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem "webpacker"
+
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem "turbolinks"
+
+# Stimulus is a JavaScript framework with modest ambitions.
+gem "stimulus-rails"
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem "jbuilder"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Devise
+gem "devise"
+
+# Devise token authentication
+gem "devise-token_authenticatable"
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap"
+
+# Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+gem "annotate"
 
 group :development, :test do
-  gem 'byebug'
-  gem 'rspec-rails', '5.1.2'
-  gem 'database_cleaner-active_record'
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "pry"
+
+  # faker
+  gem "faker"
+
+  # factory_bot is a fixtures replacement
+  gem "factory_bot_rails"
+
+  # rspec testing framework
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: "main"
+  end
 end

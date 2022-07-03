@@ -1,21 +1,82 @@
 class Api::V1::ShiftsController < ApplicationController
-  def index
-  end
+    before_action :authenticate_user!
+    before_action :set_shift, only: [:show, :edit, :update, :destroy]
 
-  def create
-  end
+    def index
+      @shift = current_user.shifts.all
+    end
+  
+    def show
+      if authorized?
+        respond_to do |format|
+          format.json { render :show }
+        end
+      else
+        handle_unauthorized
+      end
+    end    
+    
+    def create
+      @shift = current_user.shifts.build(shift_params)
 
-  def update
-  end
-
-  def destroy
-  end
-
-  def bulk_create
-    request.params[:shifts].each do |shift_params|
-      Shift.create(shift_params)
+      if authorized?
+        respond_to do |format|
+          if @shift.save
+            format.json { render :show, status: :created, location: api_v1_shift_path(@shift) }
+          else
+            format.json { render json: @shift.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        handle_unauthorized
+      end
+    end
+    
+    def update
+      if authorized?
+        respond_to do |format|
+          if @shift.update(shift_params)
+            format.json { render :show, status: :ok, location: api_v1_shift_path(@shift) }
+          else
+            format.json { render json: @shift.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        handle_unauthorized
+      end
     end
 
-    head :ok
-  end
+    def destroy
+      if authorized?
+        @shift.destroy
+
+        respond_to do |format|
+          format.json { head :no_content }
+        end
+      else
+        handle_unauthorized
+      end
+    end
+  
+    private
+
+      def set_shift
+        @shift = Shift.find(params[:id])
+      end
+
+      def authorized?
+         @shift.user == current_user
+      end
+
+      def handle_unauthorized
+        unless authorized?
+          respond_to do |format|
+            format.json { render :unauthorized, status: 401 }
+          end
+        end
+      end
+  
+      def shift_item_params
+        params.require(:shift).permit(:start_at, :end_at)
+      end    
 end
