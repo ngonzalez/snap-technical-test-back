@@ -76,7 +76,7 @@ class Api::V1::ShiftsController < ApplicationController
         end
       end
   
-      def shift_item_params
+      def shift_params
         params.require(:shift).permit(:start_at, :end_at)
       end    
 end

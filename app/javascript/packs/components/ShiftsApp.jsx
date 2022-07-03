@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import ShiftItems from './ShiftItems'
 import ShiftItem from './ShiftItem'
-import ShiftForm from './ShiftForm'
+import NewShiftForm from './NewShiftForm'
 import Spinner from './Spinner'
 import ErrorMessage from './ErrorMessage'
 class ShiftsApp extends React.Component {
@@ -56,6 +56,13 @@ class ShiftsApp extends React.Component {
             errorMessage: null,
         })
     }
+    getDefaultDate() {
+      const today = new Date()
+      const yesterday = new Date(today)
+      yesterday.setDate(yesterday.getDate() - 1)
+      console.log(yesterday.toDateString());
+      return yesterday;
+    }
     render() {
         return (
             <>
@@ -64,10 +71,11 @@ class ShiftsApp extends React.Component {
                 )}
                 {!this.state.isLoading && (
                     <>
-                        <ShiftForm
+                        <NewShiftForm
                             createShift={this.createShift}
                             handleErrors={this.handleErrors}
                             clearErrors={this.clearErrors}
+                            defaultDate={this.getDefaultDate()}
                         />
                         <ShiftItems>
                             {this.state.shifts.map(shift => (
