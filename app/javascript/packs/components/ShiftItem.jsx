@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import _ from 'lodash'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
+
 class ShiftItem extends React.Component {
     constructor(props) {
         super(props)
@@ -52,6 +51,8 @@ class ShiftItem extends React.Component {
 
 export default ShiftItem
 
+// Typechecking With PropTypes
+// https://reactjs.org/docs/typechecking-with-proptypes.html
 ShiftItem.propTypes = {
     shift: PropTypes.object.isRequired,
     getShifts: PropTypes.func.isRequired,

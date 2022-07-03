@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-
 import ShiftItems from './ShiftItems'
 import ShiftItem from './ShiftItem'
 import NewShiftForm from './NewShiftForm'
