@@ -9,37 +9,13 @@ class ShiftItem extends React.Component {
         super(props)
         this.state = {}
         this.handleDestroy = this.handleDestroy.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.updateShift = this.updateShiftItem.bind(this)
-        this.startAtRef = React.createRef()
-        this.endAtRef = React.createRef()
-        this.path = `/api/v1/shifts/${this.props.shift.id}`
     }
-    handleChange() {
-        this.updateShift()
-    }
-    updateShift = _.debounce(() => {
-        setAxiosHeaders()
-        axios
-            .put(this.path, {
-                shift: {
-                    start_at: this.startAtRef.current.value,
-                    end_at: this.endAtRef.current.value,
-                },
-            })
-            .then(() => {
-                this.props.clearErrors()
-            })
-            .catch(error => {
-                this.props.handleErrors(error)
-            })
-    }, 1000)
     handleDestroy() {
         setAxiosHeaders()
         const confirmation = confirm('Are you sure?')
         if (confirmation) {
             axios
-                .delete(this.path)
+                .delete(`/api/v1/shifts/${this.props.shift.id}`)
                 .then(response => {
                     this.props.getShifts()
                 })
@@ -49,28 +25,17 @@ class ShiftItem extends React.Component {
         }
     }
     render() {
-        const { shift } = this.props
+        const { shift } = this.props.shift;
         return (
             <tr>
                 <td>
-                    <input
-                        type="text"
-                        defaultValue={shift.startAt}
-                        onChange={this.handleChange}
-                        ref={this.startAtRef}
-                        className="form-control"
-                        id={`shift__startAt-${shift.id}`}
-                    />
+                    {this.props.shift.user_id}
                 </td>
                 <td>
-                    <input
-                        type="text"
-                        defaultValue={shift.startAt}
-                        onChange={this.handleChange}
-                        ref={this.endAtRef}
-                        className="form-control"
-                        id={`shift__endAt-${shift.id}`}
-                    />
+                    {this.props.shift.start_at}
+                </td>
+                <td>
+                    {this.props.shift.end_at}
                 </td>
                 <td className="text-right">
                     <button
@@ -90,5 +55,4 @@ export default ShiftItem
 ShiftItem.propTypes = {
     shift: PropTypes.object.isRequired,
     getShifts: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired,
 }

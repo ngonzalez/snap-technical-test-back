@@ -3,7 +3,7 @@ class Api::V1::ShiftsController < ApplicationController
     before_action :set_shift, only: [:show, :edit, :update, :destroy]
 
     def index
-      @shift = current_user.shifts.all
+      @shifts = current_user.shifts.all
     end
   
     def show

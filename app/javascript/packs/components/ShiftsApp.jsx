@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import axios from 'axios'
 
 import ShiftItems from './ShiftItems'
@@ -8,6 +7,7 @@ import ShiftItem from './ShiftItem'
 import NewShiftForm from './NewShiftForm'
 import Spinner from './Spinner'
 import ErrorMessage from './ErrorMessage'
+
 class ShiftsApp extends React.Component {
     constructor(props) {
         super(props)
@@ -16,52 +16,42 @@ class ShiftsApp extends React.Component {
             isLoading: true,
             errorMessage: null,
         }
-        this.getShifts = this.getShifts.bind(this)
-        this.createShift = this.createShift.bind(this)
-        this.handleErrors = this.handleErrors.bind(this)
-        this.clearErrors = this.clearErrors.bind(this)
+        this.getShifts = this.getShifts.bind(this);
+        this.createShift = this.createShift.bind(this);
+        this.handleErrors = this.handleErrors.bind(this);
+        this.clearErrors = this.clearErrors.bind(this);
     }
     componentDidMount() {
-        this.getShifts()
+        this.getShifts();
     }
     getShifts() {
         axios
             .get('/api/v1/shifts')
             .then(response => {
                 this.clearErrors()
-                this.setState({ isLoading: true })
-                const shifts = response.data
-                this.setState({ shifts })
+                this.setState({ shifts: response.data })
                 this.setState({ isLoading: false })
             })
             .catch(error => {
-                this.setState({ isLoading: true })
                 this.setState({
                     errorMessage: {
                         message:
                             'There was an error loading your shifts...',
                     },
-                })
-            })
+                });
+            });
     }
     createShift(shift) {
-        const shifts = [shift, ...this.state.shifts]
-        this.setState({ shifts })
+        const shifts = [shift, ...this.state.shifts];
+        this.setState({ shifts: shifts });
     }
     handleErrors(errorMessage) {
-        this.setState({ errorMessage })
+        this.setState({ errorMessage });
     }
     clearErrors() {
         this.setState({
             errorMessage: null,
-        })
-    }
-    getDefaultDate() {
-      const today = new Date()
-      const yesterday = new Date(today)
-      yesterday.setDate(yesterday.getDate() - 1)
-      console.log(yesterday.toDateString());
-      return yesterday;
+        });
     }
     render() {
         return (
@@ -75,7 +65,7 @@ class ShiftsApp extends React.Component {
                             createShift={this.createShift}
                             handleErrors={this.handleErrors}
                             clearErrors={this.clearErrors}
-                            defaultDate={this.getDefaultDate()}
+                            defaultDate={new Date()}
                         />
                         <ShiftItems>
                             {this.state.shifts.map(shift => (
@@ -83,8 +73,6 @@ class ShiftsApp extends React.Component {
                                     key={shift.id}
                                     shift={shift}
                                     getShifts={this.getShifts}
-                                    handleErrors={this.handleErrors}
-                                    clearErrors={this.clearErrors}
                                 />
                             ))}
                         </ShiftItems>

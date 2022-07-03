@@ -10,26 +10,20 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class NewShiftForm extends React.Component {
     constructor(props) {
-      super(props)
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = {
-        startAt: this.props.defaultDate,
-        endAt: this.props.defaultDate,
-      };
+        super(props)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            startAt: this.props.defaultDate,
+            endAt: this.props.defaultDate,
+        };
     }
     
     handleStartAtChanged(date) {
-      console.log('handleStartAtChanged');
-      console.log(date);
-      this.setState({ startAt: date })
-      return;
+        this.setState({ startAt: date })
     }
 
     handleEndAtChanged(date) {
-      console.log('handleEndAtChanged');
-      console.log(date);
-      this.setState({ endAt: date })
-      return;
+        this.setState({ endAt: date })
     }
 
     handleSubmit(e) {
@@ -44,9 +38,8 @@ class NewShiftForm extends React.Component {
             })
             .then(response => {
                 const shift = response.data
-                console.log(shift);
-                // this.props.createShift(shift)
-                // this.props.clearErrors()
+                this.props.createShift(shift)
+                this.props.clearErrors()
             })
             .catch(error => {
                 this.props.handleErrors(error)
