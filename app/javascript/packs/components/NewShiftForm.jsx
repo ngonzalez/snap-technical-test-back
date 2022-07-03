@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
 
-// datepicker
+// react-datepicker
+// https://github.com/Hacker0x01/react-datepicker
 import DatePicker from "react-datepicker";
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
@@ -82,4 +83,5 @@ NewShiftForm.propTypes = {
     createShift: PropTypes.func.isRequired,
     handleErrors: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
+    defaultDate: PropTypes.object,
 }
