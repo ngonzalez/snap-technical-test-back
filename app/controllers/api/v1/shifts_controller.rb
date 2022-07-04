@@ -3,7 +3,7 @@ class Api::V1::ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy, :export]
 
   def index
-    @shifts = current_user.shifts.unscoped.order("start_at::timestamp ASC").all
+    @shifts = current_user.shifts.unscoped.order(start_at: :asc).all
   end
 
   def show
