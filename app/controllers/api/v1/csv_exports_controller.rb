@@ -4,7 +4,7 @@ class Api::V1::CsvExportsController < ApplicationController
   before_action :create_csv_export, only: [:create]
 
   def index
-    @csv_exports = current_user.csv_exports.unscoped.order(created_at: :asc).all
+    @csv_exports = current_user.csv_exports.unscoped.order(created_at: :desc).all
   end
 
   def show
