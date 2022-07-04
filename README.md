@@ -1,5 +1,12 @@
 # snap-technical-test
 
+* Configure application
+The application uses [`dotenv`](https://github.com/bkeepers/dotenv) to load configuration.
+Please create the `.env` file from the sample file.
+```shell
+cp .env.sample .env
+```
+
 * Install bundle dependencies
 ```shell
 bundle install
