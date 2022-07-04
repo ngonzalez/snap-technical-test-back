@@ -50,9 +50,8 @@ class Api::V1::CsvExportsController < ApplicationController
   end
 
   def create_csv_export
-    @csv_export = current_user.csv_exports.new
-    if ["csv", "xls"].include?(csv_export_params[:format_name])
-      @csv_export.save
+    @csv_export = current_user.csv_exports.new(csv_export_params)
+    if @csv_export.save
       CsvExportWorker.perform_async(@csv_export.id, csv_export_params[:format_name])
     end
   end

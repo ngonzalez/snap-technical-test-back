@@ -61,7 +61,7 @@ RSpec.describe Api::V1::CsvExportsController, type: :controller do
           csv_export_params = {"format_name"=>"csv"}
           post :create, format: :json, params: { csv_export: csv_export_params }
           expect(response.status).to eq(201)
-          expect(JSON.parse(response.body)["created_at"]).to_not be_nil
+          expect(JSON.parse(response.body)["format_name"]).to eq(csv_export_params["format_name"])
         end
         it "creates a csv export" do
           sign_in user

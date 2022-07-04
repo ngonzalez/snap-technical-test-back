@@ -18,4 +18,6 @@ class CsvExport < ActiveRecord::Base
   belongs_to :user
 
   dragonfly_accessor :file
+
+  validates :format_name, inclusion: { in: %w(csv xls) }
 end
