@@ -52,10 +52,14 @@ class CsvExportsApp extends React.Component {
 
     refreshCsvExports() {
         const intervalId = new Date().toISOString();
-        const callback = this.getCsvExports;
-        const count = 0;
+        let count = 0;
         this.state.intervals[intervalId] = setInterval(() => {
-            (count <= 3) ? callback() : clearInterval(intervalId)
+            if (count <= 1) {
+                this.getCsvExports();
+                count++;
+            } else {
+                clearInterval(this.state.intervals[intervalId]);
+            }
         }, 5000);
     }
 
