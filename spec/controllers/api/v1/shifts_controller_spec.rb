@@ -80,7 +80,6 @@ RSpec.describe Api::V1::ShiftsController, type: :controller do
     end
   end
 
-
   describe "destroy" do
     let!(:user) { FactoryBot.create(:user_with_shifts) }
     let!(:another_user) { FactoryBot.create(:user_with_shifts) }
@@ -110,5 +109,4 @@ RSpec.describe Api::V1::ShiftsController, type: :controller do
       end
     end
   end
-
 end

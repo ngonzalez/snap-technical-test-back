@@ -30,13 +30,12 @@ RSpec.describe Api::V1::CsvExportsController, type: :controller do
       let!(:user) { FactoryBot.create(:user_with_csv_exports) }
       let!(:another_user) { FactoryBot.create(:user_with_csv_exports) }
       context "when authenticated" do
-        # it "returns a csv export" do
-        #   csv_export = user.csv_exports.first
-        #   sign_in user
-        #   get :show, format: :json, params: { id: csv_export.id }
-        #   expect(response.status).to eq(200)
-        #   expect(JSON.parse(response.body)).to eq(JSON.parse(csv_export.to_json))
-        # end
+        it "returns a csv export" do
+          csv_export = user.csv_exports.first
+          sign_in user
+          get :show, format: :json, params: { id: csv_export.id }
+          expect(response.status).to eq(200)
+        end
         it "does not allow a user to view other's csv exports" do
           csv_export = another_user.csv_exports.first
           sign_in user
@@ -57,34 +56,33 @@ RSpec.describe Api::V1::CsvExportsController, type: :controller do
       let!(:user) { FactoryBot.create(:user_with_csv_exports) }
       let!(:another_user) { FactoryBot.create(:user_with_csv_exports) }
       context "when authenticated" do
-        # it "returns a csv export" do
-        #   sign_in user
-        #   csv_export_params = {"format"=>"csv"}
-        #   post :create, format: :json, params: { csv_export: csv_export_params }
-        #   expect(response.status).to eq(201)
-        #   expect(JSON.parse(response.body)["created_at"]).to_not be_nil
-        # end
-        # it "creates a csv export" do
-        #   sign_in user
-        #   csv_export_params = {"format"=>"csv"}
-        #   expect { post :create, format: :json, params: { csv_export: csv_export_params } }.to change{ CsvExport.count }.by(1)
-        # end
+        it "returns a csv export" do
+          sign_in user
+          csv_export_params = {"format_name"=>"csv"}
+          post :create, format: :json, params: { csv_export: csv_export_params }
+          expect(response.status).to eq(201)
+          expect(JSON.parse(response.body)["created_at"]).to_not be_nil
+        end
+        it "creates a csv export" do
+          sign_in user
+          csv_export_params = {"format_name"=>"csv"}
+          expect { post :create, format: :json, params: { csv_export: csv_export_params } }.to change{ CsvExport.count }.by(1)
+        end
         it "returns a message if invalid" do
           sign_in user
-          csv_export_params = {"format"=>"test"}
+          csv_export_params = {"format_name"=>"test"}
           expect { post :create, format: :json, params: { csv_export: csv_export_params } }.to_not change{ CsvExport.count }
           expect(response.status).to eq(422)
         end
       end
       context "when not authenticated" do
         it "returns unauthorized" do
-          csv_export_params = {"format"=>"csv"}
+          csv_export_params = {"format_name"=>"csv"}
           post :create, format: :json, params: { csv_export: csv_export_params }
           expect(response.status).to eq(401)
         end
       end
     end
-
 
     describe "destroy" do
       let!(:user) { FactoryBot.create(:user_with_csv_exports) }

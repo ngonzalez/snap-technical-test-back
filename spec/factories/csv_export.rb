@@ -4,5 +4,6 @@ FactoryBot.define do
     format_name { 'csv' }
     file_name { Faker::File.file_name }
     file_uid { Faker::Number.number }
+    file { Tempfile.new }
   end
 end
