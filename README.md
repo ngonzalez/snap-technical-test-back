@@ -44,3 +44,8 @@ bundle exec rails s -p 3000
 ```
 http://127.0.0.1:3000
 ```
+
+* Start Sidekiq
+```
+bundle exec sidekiq -e development
+```
