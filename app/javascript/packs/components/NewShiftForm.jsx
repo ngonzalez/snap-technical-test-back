@@ -47,23 +47,23 @@ class NewShiftForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="my-3">
+            <form onSubmit={this.handleSubmit}>
                 <div className="form-row">
-                    <div className="form-group col-md-8">
+                    <div className="form-group m-1 p-1">
                         <DatePicker
                           selected={this.state.startAt}
                           onChange={(date) => this.handleStartAtChanged(date)}
                           className="form-control"
                         />
                     </div>
-                    <div className="form-group col-md-8">
+                    <div className="form-group m-1 p-1">
                         <DatePicker
                           selected={this.state.endAt}
                           onChange={(date) => this.handleEndAtChanged(date)}
                           className="form-control"
                         />
                     </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-group m-1 p-1">
                         <button className="btn btn-outline-success btn-block">
                             Add Shift
                         </button>
