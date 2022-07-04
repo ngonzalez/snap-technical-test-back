@@ -12,6 +12,7 @@ class CsvExportWorker
     file.rewind
     csv_export.file = file
     csv_export.file_name = "%s export on %s" % [format_name.upcase, DateTime.now.strftime("%Y-%m-%d %H:%M")]
+    csv_export.format_name = format_name
     csv_export.save!
   end
 end

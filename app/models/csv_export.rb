@@ -2,12 +2,13 @@
 #
 # Table name: csv_exports
 #
-#  id         :bigint           not null, primary key
-#  file_name  :string
-#  file_uid   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id          :bigint           not null, primary key
+#  file_name   :string
+#  file_uid    :string
+#  format_name :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 # Indexes
 #

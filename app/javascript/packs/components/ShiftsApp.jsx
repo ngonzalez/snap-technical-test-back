@@ -17,7 +17,7 @@ class ShiftsApp extends React.Component {
 
         this.state = {
             shifts: [],
-            isLoading: true,
+            loading: true,
             errorMessage: null,
         };
 
@@ -40,7 +40,7 @@ class ShiftsApp extends React.Component {
             .then(response => {
                 this.clearErrors();
                 this.setState({ shifts: response.data });
-                this.setState({ isLoading: false });
+                this.setState({ loading: false });
             })
             .catch(error => {
                 this.setState({
@@ -71,7 +71,7 @@ class ShiftsApp extends React.Component {
                 {this.state.errorMessage && (
                     <ErrorMessage errorMessage={this.state.errorMessage} />
                 )}
-                {!this.state.isLoading && (
+                {!this.state.loading && (
                     <>
                         <NewShiftForm
                             createShift={this.createShift}
@@ -90,7 +90,7 @@ class ShiftsApp extends React.Component {
                         </ShiftItems>
                     </>
                 )}
-                {this.state.isLoading && <Spinner />}
+                {this.state.loading && <Spinner />}
             </>
         )
     }

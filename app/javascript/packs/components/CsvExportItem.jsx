@@ -36,7 +36,12 @@ class CsvExportItem extends React.Component {
                     {this.props.csvExport.created_at}
                 </td>
                 <td>
-                    {this.props.csvExport.file_name}
+                    {this.props.csvExport.file_name ?
+                        <a href={`/api/v1/csv_exports/${this.props.csvExport.id}.${this.props.csvExport.format_name}`}>
+                            {this.props.csvExport.file_name}
+                        </a>
+                        : 'Processing...'
+                    }
                 </td>
                 <td className="text-right">
                     <button

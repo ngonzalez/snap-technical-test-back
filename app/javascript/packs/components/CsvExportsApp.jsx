@@ -18,8 +18,9 @@ class CsvExportsApp extends React.Component {
 
         this.state = {
             csvExports: [],
-            isLoading: true,
+            loading: true,
             errorMessage: null,
+            intervals: {},
         };
 
         // errors
@@ -46,6 +47,16 @@ class CsvExportsApp extends React.Component {
     createCsvExport(csvExport) {
         const csvExports = [csvExport, ...this.state.csvExports];
         this.setState({ csvExports: csvExports });
+        this.refreshCsvExports();
+    }
+
+    refreshCsvExports() {
+        const intervalId = new Date().toISOString();
+        const callback = this.getCsvExports;
+        const count = 0;
+        this.state.intervals[intervalId] = setInterval(() => {
+            (count <= 3) ? callback() : clearInterval(intervalId)
+        }, 5000);
     }
 
     getCsvExports() {
@@ -54,7 +65,7 @@ class CsvExportsApp extends React.Component {
             .then(response => {
                 this.clearErrors();
                 this.setState({ csvExports: response.data });
-                this.setState({ isLoading: false });
+                this.setState({ loading: false });
             })
             .catch(error => {
                 this.setState({
@@ -72,7 +83,7 @@ class CsvExportsApp extends React.Component {
                 {this.state.errorMessage && (
                     <ErrorMessage errorMessage={this.state.errorMessage} />
                 )}
-                {!this.state.isLoading && (
+                {!this.state.loading && (
                     <>
                         <NewCsvExportForm
                             createCsvExport={this.createCsvExport}
@@ -95,7 +106,7 @@ class CsvExportsApp extends React.Component {
                         </CsvExportItems>
                     </>
                 )}
-                {this.state.isLoading && <Spinner />}
+                {this.state.loading && <Spinner />}
             </>
         )
     }

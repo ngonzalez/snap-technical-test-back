@@ -4,14 +4,14 @@ class Api::V1::CsvExportsController < ApplicationController
   before_action :create_csv_export, only: [:create]
 
   def index
-    @csv_exports = current_user.csv_exports.all
+    @csv_exports = current_user.csv_exports.order(created_at: :desc).all
   end
 
   def show
     if authorized?
-      respond_to do |format|
-        format.json { render :show }
-      end
+      send_data File.read(@csv_export.file.path),
+        :type => "text/csv; charset=utf-8; header=present",
+        :disposition => "attachment; filename=#{csv_file_name}"
     else
       handle_unauthorized
     end
@@ -68,5 +68,9 @@ class Api::V1::CsvExportsController < ApplicationController
 
   def csv_export_params
     params.require(:csv_export).permit(:format_name)
-  end    
+  end
+
+  def csv_file_name
+    "%s.%s" % [@csv_export.file.name, params[:format]]
+  end
 end

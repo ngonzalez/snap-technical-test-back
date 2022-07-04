@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_054156) do
     t.bigint "user_id"
     t.string "file_uid"
     t.string "file_name"
+    t.string "format_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_csv_exports_on_user_id"

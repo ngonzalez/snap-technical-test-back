@@ -4,6 +4,7 @@ class CreateCsvExports < ActiveRecord::Migration[7.0]
       t.references :user, index: true
       t.string :file_uid
       t.string :file_name
+      t.string :format_name
 
       t.timestamps
     end
