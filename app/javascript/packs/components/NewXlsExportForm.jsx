@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import setAxiosHeaders from './AxiosHeaders';
 
-class NewCsvExportForm extends React.Component {
+class NewXlsExportForm extends React.Component {
     constructor(props) {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +15,7 @@ class NewCsvExportForm extends React.Component {
         axios
             .post('/api/v1/csv_exports', {
                 csv_export: {
-                    format_name: 'csv',
+                    format_name: 'xls',
                 },
             })
             .then(response => {
@@ -35,7 +35,7 @@ class NewCsvExportForm extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <button className="btn btn-outline-success btn-block">
-                            Create CSV Export
+                            Create XLS Export
                         </button>
                     </div>
                 </div>
@@ -44,9 +44,9 @@ class NewCsvExportForm extends React.Component {
     }
 }
 
-export default NewCsvExportForm
+export default NewXlsExportForm
 
-NewCsvExportForm.propTypes = {
+NewXlsExportForm.propTypes = {
     createCsvExport: PropTypes.func.isRequired,
     handleErrors: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,

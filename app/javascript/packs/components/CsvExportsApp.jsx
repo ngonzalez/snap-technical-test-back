@@ -10,6 +10,7 @@ import ErrorMessage from './ErrorMessage';
 import CsvExportItems from './CsvExportItems';
 import CsvExportItem from './CsvExportItem';
 import NewCsvExportForm from './NewCsvExportForm';
+import NewXlsExportForm from './NewXlsExportForm';
 
 class CsvExportsApp extends React.Component {
     constructor(props) {
@@ -74,6 +75,11 @@ class CsvExportsApp extends React.Component {
                 {!this.state.isLoading && (
                     <>
                         <NewCsvExportForm
+                            createCsvExport={this.createCsvExport}
+                            handleErrors={this.handleErrors}
+                            clearErrors={this.clearErrors}
+                        />
+                        <NewXlsExportForm
                             createCsvExport={this.createCsvExport}
                             handleErrors={this.handleErrors}
                             clearErrors={this.clearErrors}
