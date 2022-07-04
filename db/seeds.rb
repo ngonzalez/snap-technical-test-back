@@ -17,5 +17,5 @@ User.find_each do |user|
 end
 
 User.all.each do |user|
-  user.csv_exports.create!
+  user.csv_exports.create!(format_name: "csv")
 end
