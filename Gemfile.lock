@@ -262,6 +262,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec-json_expectations (2.2.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -273,6 +274,8 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     sidekiq (6.5.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -331,10 +334,12 @@ DEPENDENCIES
   redis-rails
   rspec-core!
   rspec-expectations!
+  rspec-json_expectations
   rspec-mocks!
   rspec-rails!
   rspec-support!
   sass-rails
+  shoulda-matchers
   sidekiq (= 6.5.1)
   stimulus-rails
   turbolinks

@@ -76,6 +76,12 @@ group :development, :test do
   # factory_bot is a fixtures replacement
   gem "factory_bot_rails"
 
+  # rspec-json_expectations
+  gem "rspec-json_expectations"
+
+  # shoulda-matchers
+  gem "shoulda-matchers"
+
   # rspec testing framework
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: "main"

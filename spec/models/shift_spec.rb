@@ -16,6 +16,9 @@
 require 'rails_helper'
 
 RSpec.describe Shift, type: :model do
+  it { is_expected.to validate_presence_of(:start_at) }
+  it { is_expected.to validate_presence_of(:end_at) }
+  it { is_expected.to validate_presence_of(:user_id) }
 
   describe "creation" do
     let(:shift) { FactoryBot.create(:shift) }

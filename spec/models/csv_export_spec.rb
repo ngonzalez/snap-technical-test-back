@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CsvExport, type: :model do
+  it { is_expected.to validate_presence_of(:format_name) }
+  it { is_expected.to validate_presence_of(:user_id) }
+
   describe "creation" do
     let(:csv_export) { FactoryBot.create(:csv_export) }
     it "can be created" do
@@ -12,6 +15,11 @@ RSpec.describe CsvExport, type: :model do
     let(:csv_export) { FactoryBot.build(:csv_export) }
     it "should have a format name" do
       csv_export.format_name = nil
+      expect(csv_export).to_not be_valid
+      expect(csv_export.errors.full_messages.include?("Format name is not included in the list")).to eq(true)
+    end
+    it "should have a valid format name" do
+      csv_export.format_name = "test"
       expect(csv_export).to_not be_valid
       expect(csv_export.errors.full_messages.include?("Format name is not included in the list")).to eq(true)
     end
