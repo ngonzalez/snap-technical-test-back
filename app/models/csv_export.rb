@@ -19,5 +19,6 @@ class CsvExport < ActiveRecord::Base
 
   dragonfly_accessor :file
 
+  validates :user_id, presence: true
   validates :format_name, inclusion: { in: %w(csv xls) }
 end

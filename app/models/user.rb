@@ -28,4 +28,7 @@ class User < ApplicationRecord
 
   has_many :shifts, dependent: :destroy
   has_many :csv_exports, dependent: :destroy
+
+  validates :email, presence: true, allow_blank: false
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 end

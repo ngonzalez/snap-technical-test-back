@@ -26,8 +26,40 @@ RSpec.describe User, type: :model do
   
   describe "creation" do
     let!(:user) { FactoryBot.create(:user) }
+
     it "can be created" do
       expect(user).to be_valid
+    end
+
+    it 'validates email' do
+      expect(user.valid?).to eq(true)
+    end
+    context 'it has no email' do
+      setup do
+        user.email = nil
+      end
+      it 'is not valid' do
+        expect(user.valid?).to eq(false)
+        expect(user.errors.full_messages).to eq(["Email can't be blank", "Email is invalid"])
+      end
+    end
+    context 'it has an invalid email' do
+      setup do
+        user.email = "test"
+      end
+      it 'is not valid' do
+        expect(user.valid?).to eq(false)
+        expect(user.errors.full_messages).to eq(["Email is invalid"])
+      end
+    end
+    context 'a valid email' do
+      setup do
+        user.email = "test@example.com"
+      end
+      it 'is not valid' do
+        expect(user.valid?).to eq(true)
+        expect(user.errors.full_messages).to eq([])
+      end
     end
   end
 end

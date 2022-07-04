@@ -18,6 +18,7 @@ class Shift < ApplicationRecord
 
   belongs_to :user
 
+  validates :user_id, presence: true
   validates :start_at, presence: true, allow_blank: false
   validates :end_at, presence: true, allow_blank: false
   validates :end_at, comparison: { greater_than: :start_at }

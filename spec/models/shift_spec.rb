@@ -29,11 +29,17 @@ RSpec.describe Shift, type: :model do
     it "should have a start date" do
       shift.start_at = nil
       expect(shift).to_not be_valid
+      expect(shift.errors.full_messages.include?("Start at can't be blank")).to eq(true)
+    end
+    it "should have a end date" do
+      shift.end_at = nil
+      expect(shift).to_not be_valid
+      expect(shift.errors.full_messages.include?("End at can't be blank")).to eq(true)
     end
     it "should have a user" do
       shift.user = nil
       expect(shift).to_not be_valid
-    end    
+      expect(shift.errors.full_messages.include?("User can't be blank")).to eq(true)
+    end
   end
-
 end

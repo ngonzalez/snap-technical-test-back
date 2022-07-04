@@ -52,7 +52,7 @@ class Api::V1::CsvExportsController < ApplicationController
   def create_csv_export
     @csv_export = current_user.csv_exports.new(csv_export_params)
     if @csv_export.save
-      CsvExportWorker.perform_async(@csv_export.id, csv_export_params[:format_name])
+      CsvExportWorker.perform_async(@csv_export.id)
     end
   end
 
