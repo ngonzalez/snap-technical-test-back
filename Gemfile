@@ -1,13 +1,16 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.3"
+ruby "3.0.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "7.0.3"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "5.6.4"
+
+# Simple, efficient background processing for Ruby.
+gem "sidekiq", "6.5.1"
 
 # PostgreSQL
 gem "pg"

@@ -1,0 +1,1 @@
+json.array! @csv_exports, partial: "api/v1/csv_exports/csv_export", as: :csv_export

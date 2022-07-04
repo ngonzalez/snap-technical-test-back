@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do
       resources :shifts, only: [:index, :show, :create, :update, :destroy]
+      resources :csv_exports, only: [:index, :show, :create, :destroy]
     end
   end
 end

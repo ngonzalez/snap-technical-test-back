@@ -1,41 +1,52 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import axios from 'axios'
-import ShiftItems from './ShiftItems'
-import ShiftItem from './ShiftItem'
-import NewShiftForm from './NewShiftForm'
-import Spinner from './Spinner'
-import ErrorMessage from './ErrorMessage'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+
+// errors
+import Spinner from './Spinner';
+import ErrorMessage from './ErrorMessage';
+
+// shifts
+import ShiftItems from './ShiftItems';
+import ShiftItem from './ShiftItem';
+import NewShiftForm from './NewShiftForm';
 
 class ShiftsApp extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
         this.state = {
             shifts: [],
             isLoading: true,
             errorMessage: null,
-        }
-        this.getShifts = this.getShifts.bind(this);
-        this.createShift = this.createShift.bind(this);
+        };
+
+        // errors
         this.handleErrors = this.handleErrors.bind(this);
         this.clearErrors = this.clearErrors.bind(this);
+
+        // shifts
+        this.getShifts = this.getShifts.bind(this);
+        this.createShift = this.createShift.bind(this);
     }
+
     componentDidMount() {
         this.getShifts();
     }
+
     getShifts() {
         axios
             .get('/api/v1/shifts')
             .then(response => {
-                this.clearErrors()
-                this.setState({ shifts: response.data })
-                this.setState({ isLoading: false })
+                this.clearErrors();
+                this.setState({ shifts: response.data });
+                this.setState({ isLoading: false });
             })
             .catch(error => {
                 this.setState({
                     errorMessage: {
                         message:
-                            'There was an error loading your shifts...',
+                            'Failed to load shifts',
                     },
                 });
             });

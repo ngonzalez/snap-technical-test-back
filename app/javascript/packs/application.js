@@ -19,5 +19,8 @@ import "controllers";
 import "styles";
 
 require('./components/ShiftsApp')
+require('./components/CsvExportsApp')
+
+// bootstrap
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'

@@ -21,4 +21,13 @@ class Shift < ApplicationRecord
   validates :start_at, presence: true, allow_blank: false
   validates :end_at, presence: true, allow_blank: false
   validates :end_at, comparison: { greater_than: :start_at }
+
+  def self.to_csv(col_sep: CSV::DEFAULT_OPTIONS.fetch(:col_sep))
+    CSV.generate(col_sep: col_sep) do |csv|
+      csv << column_names
+      find_each do |shift|
+        csv << shift.attributes.values_at(*column_names)
+      end
+    end
+  end
 end
