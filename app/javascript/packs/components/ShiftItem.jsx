@@ -1,17 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import axios from 'axios'
-import setAxiosHeaders from './AxiosHeaders'
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import setAxiosHeaders from './AxiosHeaders';
+import moment from 'moment';
 
 class ShiftItem extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = {}
-        this.handleDestroy = this.handleDestroy.bind(this)
+        super(props);
+        this.state = {};
+        this.handleDestroy = this.handleDestroy.bind(this);
     }
+
     handleDestroy() {
-        setAxiosHeaders()
-        const confirmation = confirm('Are you sure?')
+        setAxiosHeaders();
+        const confirmation = confirm('Are you sure?');
         if (confirmation) {
             axios
                 .delete(`/api/v1/shifts/${this.props.shift.id}`)
@@ -20,9 +22,10 @@ class ShiftItem extends React.Component {
                 })
                 .catch(error => {
                     console.debug(error)
-                })
+                });
         }
     }
+
     render() {
         const { shift } = this.props.shift;
         return (
@@ -31,10 +34,10 @@ class ShiftItem extends React.Component {
                     {this.props.shift.user_id}
                 </td>
                 <td>
-                    {this.props.shift.start_at}
+                    {moment(this.props.shift.start_at).format('MMMM Do YYYY HH:mm')}
                 </td>
                 <td>
-                    {this.props.shift.end_at}
+                    {moment(this.props.shift.end_at).format('MMMM Do YYYY HH:mm')}
                 </td>
                 <td className="text-right">
                     <button
@@ -51,8 +54,6 @@ class ShiftItem extends React.Component {
 
 export default ShiftItem
 
-// Typechecking With PropTypes
-// https://reactjs.org/docs/typechecking-with-proptypes.html
 ShiftItem.propTypes = {
     shift: PropTypes.object.isRequired,
     getShifts: PropTypes.func.isRequired,

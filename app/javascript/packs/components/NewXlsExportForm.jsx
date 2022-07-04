@@ -8,7 +8,7 @@ class NewXlsExportForm extends React.Component {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleSubmit(e) {
         e.preventDefault();
         setAxiosHeaders();

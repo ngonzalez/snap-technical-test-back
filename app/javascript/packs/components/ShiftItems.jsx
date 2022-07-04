@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class ShiftItems extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
+
     render() {
         return (
             <>
@@ -28,4 +29,5 @@ class ShiftItems extends React.Component {
         )
     }
 }
+
 export default ShiftItems

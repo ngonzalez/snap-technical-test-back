@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const setAxiosHeaders = () => {
     const csrfToken = document.querySelector('[name=csrf-token]')

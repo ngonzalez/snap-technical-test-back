@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import setAxiosHeaders from './AxiosHeaders';
 import DatePicker from "react-datepicker"; // react-datepicker https://github.com/Hacker0x01/react-datepicker
-import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 
 class NewShiftForm extends React.Component {
     constructor(props) {
@@ -54,6 +54,10 @@ class NewShiftForm extends React.Component {
                           selected={this.state.startAt}
                           onChange={(date) => this.handleStartAtChanged(date)}
                           className="form-control"
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="yyyy-MM-dd h:mm"
                         />
                     </div>
                     <div className="form-group m-1 p-1">
@@ -61,6 +65,10 @@ class NewShiftForm extends React.Component {
                           selected={this.state.endAt}
                           onChange={(date) => this.handleEndAtChanged(date)}
                           className="form-control"
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={30}
+                          dateFormat="yyyy-MM-dd h:mm"
                         />
                     </div>
                     <div className="form-group m-1 p-1">

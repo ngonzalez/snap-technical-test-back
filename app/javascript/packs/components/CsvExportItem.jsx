@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import axios from 'axios'
-import setAxiosHeaders from './AxiosHeaders'
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import setAxiosHeaders from './AxiosHeaders';
 
 class CsvExportItem extends React.Component {
     constructor(props) {
