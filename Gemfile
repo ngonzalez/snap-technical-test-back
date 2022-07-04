@@ -54,9 +54,6 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Devise
 gem "devise"
 
-# Devise token authentication
-gem "devise-token_authenticatable"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap"
 

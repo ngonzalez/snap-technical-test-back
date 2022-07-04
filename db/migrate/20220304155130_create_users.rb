@@ -13,10 +13,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       # Rememberable
       t.datetime :remember_created_at
 
-      # TokenAuthenticatable
-      t.text :authentication_token
-      t.datetime :authentication_token_created_at
-
       # Role
       t.column :role, 'user_roles', null: false, default: user_roles_default
 
@@ -25,7 +21,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
 
     add_index :users, :email, unique: true
     add_index :users, :reset_password_token, unique: true
-    add_index :users, :authentication_token, unique: true
   end
   
   private
