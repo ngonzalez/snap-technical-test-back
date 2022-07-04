@@ -37,5 +37,10 @@ bundle exec rails webpacker:compile
 
 * Start development server
 ```shell
-bundle exec rails s
+bundle exec rails s -p 3000
+```
+
+* Launch browser
+```
+http://127.0.0.1:3000
 ```
