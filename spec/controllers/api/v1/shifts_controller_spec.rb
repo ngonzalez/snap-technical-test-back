@@ -9,7 +9,7 @@ RSpec.describe Api::V1::ShiftsController, type: :controller do
         sign_in user
         get :index, format: :json
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq(JSON.parse(user.shifts.unscoped.order(start_at: :desc).to_json))
+        expect(JSON.parse(response.body)).to eq(JSON.parse(user.shifts.order(start_at: :desc).to_json))
       end
     end
     context "when not authenticated" do

@@ -15,7 +15,7 @@ RSpec.describe Api::V1::CsvExportsController, type: :controller do
           sign_in user
           get :index, format: :json
           expect(response.status).to eq(200)
-          expect(JSON.parse(response.body)).to eq(JSON.parse(user.csv_exports.unscoped.order(created_at: :desc).to_json))
+          expect(JSON.parse(response.body)).to eq(JSON.parse(user.csv_exports.order(created_at: :desc).to_json))
         end
       end
       context "when not authenticated" do
