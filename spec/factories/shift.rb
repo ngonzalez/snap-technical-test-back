@@ -16,5 +16,7 @@
 FactoryBot.define do
   factory :shift do
     user
+    start_at { 1.day.ago }
+    end_at { 1.day.ago + 1.hour }
   end
 end

@@ -4,7 +4,7 @@ class Api::V1::CsvExportsController < ApplicationController
   before_action :create_csv_export, only: [:create]
 
   def index
-    @csv_exports = current_user.csv_exports.order(created_at: :desc).all
+    @csv_exports = current_user.csv_exports.unscoped.order(created_at: :asc).all
   end
 
   def show
@@ -50,8 +50,11 @@ class Api::V1::CsvExportsController < ApplicationController
   end
 
   def create_csv_export
-    @csv_export = current_user.csv_exports.create
-    CsvExportWorker.perform_async(@csv_export.id, csv_export_params[:format_name])
+    @csv_export = current_user.csv_exports.new
+    if ["csv", "xls"].include?(csv_export_params[:format_name])
+      @csv_export.save
+      CsvExportWorker.perform_async(@csv_export.id, csv_export_params[:format_name])
+    end
   end
 
   def authorized?

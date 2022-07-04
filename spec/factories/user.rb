@@ -22,7 +22,28 @@
 #
 FactoryBot.define do
   factory :user do
-    sequence(:email) { |n| "user-#{n}@example.com" }
+    sequence(:email) { |n| Faker::Internet.email }
     password { "password" }
+    password_confirmation { "password" }
+
+    factory :user_with_shifts do
+      transient do
+        count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:shift, evaluator.count, user: user)
+      end
+    end
+
+    factory :user_with_csv_exports do
+      transient do
+        count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:csv_export, evaluator.count, user: user)
+      end
+    end
   end
 end
