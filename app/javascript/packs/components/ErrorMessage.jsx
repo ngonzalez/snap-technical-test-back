@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
-import _ from 'lodash'
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 const ErrorMessage = props => {
-    const message = _.get(props.errorMessage, 'message', null)
+    const message = _.get(props.errorMessage, 'message', null);
     if (message) {
         return (
             <div className="alert alert-danger" role="alert">
