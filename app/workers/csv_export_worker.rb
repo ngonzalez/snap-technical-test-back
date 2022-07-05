@@ -6,7 +6,7 @@ class CsvExportWorker
 
   def perform csv_export_id
     csv_export = CsvExport.find csv_export_id
-    col_sep = [:csv].include?(csv_export.format_name) ? CSV::DEFAULT_OPTIONS.fetch(:col_sep) : "\t"
+    col_sep = [:csv].include?(csv_export.format_name.to_sym) ? CSV::DEFAULT_OPTIONS.fetch(:col_sep) : "\t"
     file = Tempfile.new
     file.write csv_export.user.shifts.to_csv(col_sep: col_sep)
     file.rewind
