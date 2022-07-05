@@ -15,7 +15,7 @@ class NewShiftForm extends React.Component {
             endAt: this.props.defaultDate,
         };
     }
-    
+
     handleStartAtChanged(date) {
         this.setState({ startAt: date });
     }
